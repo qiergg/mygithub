@@ -15,5 +15,7 @@ public class App extends Application {
         super.attachBaseContext(base);
         MAppManager.init(this);
         HotFixManger.init(this);
+
+        
     }
 }
