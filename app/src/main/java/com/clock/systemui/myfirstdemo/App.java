@@ -16,6 +16,8 @@ public class App extends Application {
         MAppManager.init(this);
         HotFixManger.init(this);
 
+
+
         
     }
 }
