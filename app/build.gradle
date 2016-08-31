@@ -1,0 +1,54 @@
+apply plugin: 'com.android.application'
+apply plugin: 'com.dodola.rocoofix'
+repositories {
+    flatDir {
+        dirs 'libs'
+    }
+}
+android {
+    signingConfigs {
+        test {
+            keyAlias 'mymy'
+            keyPassword '123456'
+            storeFile file('doc/mymy.jks')
+            storePassword '123456'
+        }
+    }
+
+    compileSdkVersion 23
+    buildToolsVersion "23.0.1"
+
+    defaultConfig {
+        applicationId "com.clock.systemui.myfirstdemo"
+        minSdkVersion 15
+        targetSdkVersion 23
+        versionCode 3
+        versionName "1.0"
+    }
+    buildTypes {
+        release {
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.test
+        }
+        debug {
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    testCompile 'junit:junit:4.12'
+    compile 'com.android.support:appcompat-v7:23.2.1'
+    compile 'com.dodola:rocoo:1.1'
+    compile(name: 'AndroidQuery-release', ext: 'aar')
+}
+rocoo_fix {
+    includePackage = ['com/clock/systemui/myfirstdemo']
+    excludeClass = ['App.class','HotFixManger.class','BasePermissionActivity.class']
+    preVersionPath = '1'
+    enable = true
+    scanref =true
+}
